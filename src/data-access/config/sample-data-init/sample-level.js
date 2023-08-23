@@ -1,1 +1,0 @@
-module.exports = "INSERT INTO `levels` (`level`, `label`, `structure`) VALUES ('1', 'Primer nivel from node', '{\r\n \"commands\": [1,2,3]\r\n}');"

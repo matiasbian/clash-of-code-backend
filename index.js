@@ -1,4 +1,4 @@
-const sqlInit = require('./src/data-access/config/sample-data-init/sample-init.js')
+const sqlInit = require('./src/data-access/init/sample-init.js')
 
 if (process.env.ENVIRONMENT == 'dev') sqlInit.addSampleLevel()
 
