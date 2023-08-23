@@ -1,0 +1,1 @@
+console.log('Hello Clash of Code!')
