@@ -4,6 +4,8 @@ const sqlConn = require('../config/mysql-conn-info')
 const mysql = require('mysql');
 const queries = require('./sample-level.js')
 
+const LEVEL = require('../levels.js')
+
 const addSampleLevel = async () => {
     var connection = mysql.createConnection(sqlConn);
     connection.connect();
