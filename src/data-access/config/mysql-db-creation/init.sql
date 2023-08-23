@@ -1,0 +1,1 @@
+CREATE TABLE `clash_of_code`.`levels` (`level` INT NOT NULL , `label` TEXT NOT NULL , `structure` JSON NOT NULL ) ENGINE = InnoDB;
