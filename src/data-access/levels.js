@@ -8,7 +8,6 @@ const util = require("util");
 
 const findLevel = async (levelNumber) => {
     const query = 'SELECT * FROM `levels` WHERE level = ' + levelNumber + ';'
-    console.log('QUERY', query)
     var connection = mysql.createConnection(sqlConn);
     connection.query = util.promisify(connection.query).bind(connection);
 

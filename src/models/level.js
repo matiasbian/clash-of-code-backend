@@ -8,7 +8,7 @@ class Level {
 
 class LevelStructure {
     constructor(structure) {
-        this.elements = JSON.parse(structure);
+        this.elements = JSON.parse(structure).elements;
     }
 }
 
