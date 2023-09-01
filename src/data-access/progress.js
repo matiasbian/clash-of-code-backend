@@ -17,9 +17,21 @@ const saveProgress = async (data) => {
     await connection.query(query)
     connection.end()
 
-    console.log('Progress saved')
+    return progress
+}
+
+const deleteLastProgress = async () => {
+    const query = `DELETE FROM progress ORDER BY id DESC LIMIT 1; `
+    var connection = mysql.createConnection(sqlConn);
+    connection.query = util.promisify(connection.query).bind(connection);
+
+    connection.connect();
+
+    await connection.query(query)
+    connection.end()
 }
 
 module.exports = {
-    saveProgress
+    saveProgress,
+    deleteLastProgress
 }

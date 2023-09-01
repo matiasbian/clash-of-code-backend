@@ -4,8 +4,8 @@ const postLevelProgress = async (req, res) => {
     const body = req.body
 
     try {
-        await progressDataAccess.saveProgress(body)
-        res.status(200).send('OK')
+        const progress = await progressDataAccess.saveProgress(body)
+        res.status(200).send(progress)
     } catch (e) {
         res.status(404).send(e.message)
     }
