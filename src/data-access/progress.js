@@ -20,6 +20,23 @@ const saveProgress = async (data) => {
     return progress
 }
 
+const getProgress = async (data) => {
+    //const progress = new Progress(data)
+    const query = `SELECT * FROM progress WHERE user = 5;`
+    
+    var connection = mysql.createConnection(sqlConn);
+    connection.query = util.promisify(connection.query).bind(connection);
+
+    connection.connect();
+
+    let progress = await connection.query(query)
+    progress = progress.map((p) => new Progress({ userID: p.user, levelNumber: p.level, movements: p.movements }))
+
+    connection.end()
+
+    return progress
+}
+
 const deleteLastProgress = async () => {
     const query = `DELETE FROM progress ORDER BY id DESC LIMIT 1; `
     var connection = mysql.createConnection(sqlConn);
@@ -33,5 +50,6 @@ const deleteLastProgress = async () => {
 
 module.exports = {
     saveProgress,
+    getProgress,
     deleteLastProgress
 }

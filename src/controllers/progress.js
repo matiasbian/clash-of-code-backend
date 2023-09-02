@@ -9,8 +9,20 @@ const postLevelProgress = async (req, res) => {
     } catch (e) {
         res.status(404).send(e.message)
     }
-
 }
+
+const getLevelProgress = async (req, res) => {
+    const userID = req.query.userID
+
+    try {
+        const progress = await progressDataAccess.getProgress(userID)
+        res.status(200).send(progress)
+    } catch (e) {
+        res.status(404).send(e.message)
+    }
+}
+
 module.exports = {
     postLevelProgress,
+    getLevelProgress
 }
