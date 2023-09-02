@@ -22,7 +22,7 @@ const saveProgress = async (data) => {
 
 const getProgress = async (data) => {
     //const progress = new Progress(data)
-    const query = `SELECT * FROM progress WHERE user = ${data};`
+    const query = `SELECT * FROM progress WHERE user = ${data} ORDER BY id DESC;`
     
     var connection = mysql.createConnection(sqlConn);
     connection.query = util.promisify(connection.query).bind(connection);
