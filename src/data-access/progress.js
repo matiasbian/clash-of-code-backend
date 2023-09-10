@@ -13,8 +13,11 @@ const saveProgress = async (data) => {
     connection.query = util.promisify(connection.query).bind(connection);
 
     connection.connect();
-
-    await connection.query(query)
+    try {
+        connection.query(query)
+    } catch (e) {
+        console.log(e)
+    }
     connection.end()
 
     return progress

@@ -17,7 +17,7 @@ const findLevel = async (levelNumber) => {
     connection.end()
 
     if (!level) throw new Error('Level not found')
-    return new Level(level.level, level.label, level.structure)
+    return new Level(level.level, level.label, level.structure, level.perfect_steps)
 }
 
 module.exports = {
