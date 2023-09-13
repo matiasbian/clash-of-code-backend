@@ -11,6 +11,17 @@ const getLevel = async (req, res) => {
     }
 
 }
+
+const addLevel = async (req, res) => {
+    const body = req.body
+    try {
+        const result = await level.addLevel(body)
+        res.status(200).send(result)
+    } catch (e) {
+        res.status(404).send(e.message)
+    }
+}
 module.exports = {
     getLevel,
+    addLevel
 }
