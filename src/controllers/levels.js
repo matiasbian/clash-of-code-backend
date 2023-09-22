@@ -11,6 +11,17 @@ const getLevel = async (req, res) => {
     }
 
 }
+const getLevels = async (req, res) => {
+    const requestedLevel = req.query.level
+
+    try {
+        const levelStructure = await level.findLevels(requestedLevel)
+        res.status(200).send(levelStructure)
+    } catch (e) {
+        res.status(404).send(e.message)
+    }
+
+}
 
 const addLevel = async (req, res) => {
     const body = req.body
@@ -23,5 +34,6 @@ const addLevel = async (req, res) => {
 }
 module.exports = {
     getLevel,
+    getLevels,
     addLevel
 }

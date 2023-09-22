@@ -20,6 +20,20 @@ const findLevel = async (levelNumber) => {
     return new Level(level.level, level.label, level.structure, level.perfect_steps)
 }
 
+const findLevels = async (levelNumber) => {
+    const query = 'SELECT * FROM levels group by level asc;'
+    var connection = mysql.createConnection(sqlConn);
+    connection.query = util.promisify(connection.query).bind(connection);
+
+    connection.connect();
+
+    const levels = await connection.query(query)
+    connection.end()
+
+    if (!levels) throw new Error('Levels not found')
+    return levels
+}
+
 const addLevel = async (data) => {
     const level = new Level(data.level, data.label, data.structure, data.perfect_steps, true)
     const query = `INSERT INTO levels (level, label, structure, perfect_steps) VALUES (${data.levelNumber}, '${level.label}', '${JSON.stringify(level.structure.elements)}', ${data.perfectSteps || data.perfect_steps});`
@@ -51,6 +65,7 @@ const deleteLastLevel = async () => {
 
 module.exports = {
     findLevel,
+    findLevels,
     addLevel,
     deleteLastLevel
 }
