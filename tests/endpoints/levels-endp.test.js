@@ -26,6 +26,15 @@ test("POST /levels", async () => {
 		})
 })
 
+test("GET /alllevels", async () => {
+	await supertest(app)
+		.get("/api/alllevels")
+		.expect(200)
+		.then((response) => {
+			expect(response.body[0].level).toBe(1)
+		})
+})
+
 const sampleLevel = {
 	"label": "LEVEL_12",
 	"levelNumber": 12,
