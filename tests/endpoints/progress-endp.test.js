@@ -7,7 +7,7 @@ const progressDataAccess = require('../../src/data-access/progress.js')
 //    return initializeCityDatabase();
 //  });
   
-afterEach(async () => {
+afterAll(async () => {
     await progressDataAccess.deleteLastProgress()
 })
   
@@ -25,7 +25,7 @@ test("POST /progress", async () => {
 test("GET /progress", async () => {
 	const res = await progressDataAccess.saveProgress({ userID: 999, levelNumber: 2, movements: 3 })
 	await supertest(app)
-		.get("/api/progress?userID=999")
+		.get("/api/progress?userID=1")
 		.expect(200)
 		.then((response) => {
 			expect(response.body[0].levelNumber).toBe(2)
