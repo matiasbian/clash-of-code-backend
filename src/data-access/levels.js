@@ -35,6 +35,10 @@ const findLevels = async (levelNumber) => {
 }
 
 const addLevel = async (data) => {
+    
+    const exists = await existsLevel(data.levelNumber)
+    if (exists) throw new Error('Level already exists')
+
     const level = new Level(data.level, data.label, data.structure, data.perfect_steps, true)
     const query = `INSERT INTO levels (level, label, structure, perfect_steps) VALUES (${data.levelNumber}, '${level.label}', '${JSON.stringify(level.structure.elements)}', ${data.perfectSteps || data.perfect_steps});`
 
@@ -63,6 +67,20 @@ const deleteLastLevel = async () => {
     connection.end()
 }
 
+const existsLevel = async (level) => {
+    const query = `SELECT COUNT(level) as count
+        FROM levels
+        WHERE level = ${level}; `
+        
+    var connection = mysql.createConnection(sqlConn);
+    connection.query = util.promisify(connection.query).bind(connection);
+
+    connection.connect();
+
+    const [levelCount] = await connection.query(query)
+    connection.end()
+    return levelCount.count > 0
+}
 module.exports = {
     findLevel,
     findLevels,
