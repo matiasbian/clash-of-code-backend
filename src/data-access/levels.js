@@ -67,6 +67,20 @@ const deleteLastLevel = async () => {
     connection.end()
 }
 
+const removeLevel = async (level) => {
+    const existLevel = await existsLevel(level)
+    if (!existLevel) throw new Error("Level not found")
+
+    const query = `DELETE FROM levels WHERE level = ${level}; `
+    var connection = mysql.createConnection(sqlConn);
+    connection.query = util.promisify(connection.query).bind(connection);
+
+    connection.connect();
+
+    await connection.query(query)
+    connection.end()
+}
+
 const existsLevel = async (level) => {
     const query = `SELECT COUNT(level) as count
         FROM levels
@@ -85,5 +99,6 @@ module.exports = {
     findLevel,
     findLevels,
     addLevel,
-    deleteLastLevel
+    deleteLastLevel,
+    removeLevel
 }

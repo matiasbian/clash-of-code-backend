@@ -32,8 +32,20 @@ const addLevel = async (req, res) => {
         res.status(404).send(e.message)
     }
 }
+
+const removeLevel = async (req, res) => {
+    const body = req.body
+    try {
+        const result = await level.removeLevel(body.level)
+        res.status(200).send(result)
+    } catch (e) {
+        res.status(404).send(e.message)
+    }
+}
+
 module.exports = {
     getLevel,
     getLevels,
-    addLevel
+    addLevel,
+    removeLevel
 }
