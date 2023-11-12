@@ -54,8 +54,8 @@ const addLevel = async () => {
 }
 
 const sampleLevel = {
-	"label": "LEVEL_12",
-	"levelNumber": 12,
+	"label": "LEVEL_20",
+	"levelNumber": 20,
     "structure": {
         "elements": [
                 {
