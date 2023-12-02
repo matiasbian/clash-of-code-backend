@@ -1,0 +1,16 @@
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '1', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '2', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '3', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '4', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '5', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '6', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '7', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '8', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '9', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '10', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '11', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '12', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '13', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '14', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '15', '5', '100');
+INSERT INTO `progress` (`id`, `level`, `user`, `movements`) VALUES (NULL, '16', '5', '100');

@@ -17,7 +17,7 @@ const findLevel = async (levelNumber) => {
     connection.end()
 
     if (!level) throw new Error('Level not found')
-    return new Level(level.level, level.label, level.structure, level.perfect_steps)
+    return new Level(level.level, level.label, level.structure, level.perfect_steps, level.dialogs)
 }
 
 const findLevels = async (levelNumber) => {
@@ -39,8 +39,8 @@ const addLevel = async (data) => {
     const exists = await existsLevel(data.levelNumber)
     if (exists) throw new Error('Level already exists')
 
-    const level = new Level(data.level, data.label, data.structure, data.perfect_steps, true)
-    const query = `INSERT INTO levels (level, label, structure, perfect_steps) VALUES (${data.levelNumber}, '${level.label}', '${JSON.stringify(level.structure.elements)}', ${data.perfectSteps || data.perfect_steps});`
+    const level = new Level(data.level, data.label, data.structure, data.perfect_steps, data.dialogs, true)
+    const query = `INSERT INTO levels (level, label, structure, perfect_steps, dialogs) VALUES (${data.levelNumber}, '${level.label}', '${JSON.stringify(level.structure.elements)}', ${data.perfectSteps || data.perfect_steps}, '${data.dialogs || ""}');`
 
     var connection = mysql.createConnection(sqlConn);
     connection.query = util.promisify(connection.query).bind(connection);
@@ -58,6 +58,20 @@ const addLevel = async (data) => {
 
 const deleteLastLevel = async () => {
     const query = `DELETE FROM levels ORDER BY level DESC LIMIT 1; `
+    var connection = mysql.createConnection(sqlConn);
+    connection.query = util.promisify(connection.query).bind(connection);
+
+    connection.connect();
+
+    await connection.query(query)
+    connection.end()
+}
+
+const removeLevel = async (level) => {
+    const existLevel = await existsLevel(level)
+    if (!existLevel) throw new Error("Level not found")
+
+    const query = `DELETE FROM levels WHERE level = ${level}; `
     var connection = mysql.createConnection(sqlConn);
     connection.query = util.promisify(connection.query).bind(connection);
 
@@ -85,5 +99,6 @@ module.exports = {
     findLevel,
     findLevels,
     addLevel,
-    deleteLastLevel
+    deleteLastLevel,
+    removeLevel
 }

@@ -16,6 +16,14 @@ test("GET /levels", async () => {
 		})
 })
 
+test("POST /remove-level", async () => {
+    await addLevel()
+	await supertest(app)
+		.post("/api/remove-level")
+		.send({ level: sampleLevel.levelNumber })
+		.expect(200)
+})
+
 test("POST /levels", async () => {
 	await supertest(app)
 		.post("/api/levels")
@@ -35,9 +43,19 @@ test("GET /alllevels", async () => {
 		})
 })
 
+const addLevel = async () => {
+    return supertest(app)
+		.post("/api/levels")
+		.send(sampleLevel)
+		.expect(200)
+		.then((response) => {
+			expect(response.body.label).toBe(sampleLevel.label)
+		})
+}
+
 const sampleLevel = {
-	"label": "LEVEL_12",
-	"levelNumber": 12,
+	"label": "LEVEL_20",
+	"levelNumber": 20,
     "structure": {
         "elements": [
                 {
